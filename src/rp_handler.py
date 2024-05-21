@@ -78,8 +78,8 @@ def run(job):
         guidance_scale = validated_input.get("guidance_scale", 5.0),
         num_inference_steps = validated_input.get("num_inference_steps", 25),
         seed = validated_input.get("seed", 42),
-        image_ref = image_ref
-        style_strength_ratio = validated_input.get("style_strength_ratio", 30)  # Use the new parameter
+        image_ref = image_ref,
+        style_strength_ratio = validated_input.get("style_strength_ratio", 30)  
 
     )
 
