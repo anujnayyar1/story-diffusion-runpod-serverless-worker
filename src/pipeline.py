@@ -253,11 +253,15 @@ class StoryDiffusionXLPipeline(StableDiffusionXLPipeline):
         callback_on_step_end_tensor_inputs: List[str] = ["latents"],
         # Added parameters (for PhotoMaker)
         input_id_images: PipelineImageInput = None,
-        start_merge_step: int = 0, # TODO: change to `style_strength_ratio` in the future
+        style_strength_ratio: int = 20, 
         class_tokens_mask: Optional[torch.LongTensor] = None,
         prompt_embeds_text_only: Optional[torch.FloatTensor] = None,
         pooled_prompt_embeds_text_only: Optional[torch.FloatTensor] = None,
     ):
+        start_merge_step = int(style_strength_ratio / 100 * num_inference_steps)
+        if start_merge_step > 50:
+            start_merge_step = 50
+
         if input_id_images is None:
             # remove stopword from prompt
             prompt = remove_word(prompt, self.trigger_word)
