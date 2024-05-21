@@ -38,5 +38,9 @@ INPUT_SCHEMA = {
     "image_ref": {
         "type": str,
         "required": True
+    },
+    "style_strength_ratio": {
+        "type": int,
+        "required": False
     }
 }
