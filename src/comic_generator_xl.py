@@ -344,7 +344,9 @@ class ComicGeneratorXL:
         guidance_scale: float = 5.0,
         num_inference_steps: int = 50,
         seed: int = 2047,
-        image_ref: Image.Image = None
+        image_ref: Image.Image = None,
+        style_strength_ratio: int = 30
+
     ):
         global _sa32, _sa64, _height, _width, _write, _mask1024, _mask4096, _cur_step, _attn_count
         # strength of consistent self-attention: the larger, the stronger
@@ -384,7 +386,8 @@ class ComicGeneratorXL:
             width = width,
             negative_prompt = negative_prompt,
             generator = generator,
-            input_id_images = input_id_images
+            input_id_images = input_id_images,
+            style_strength_ratio = style_strength_ratio
         ).images
         _write = False
         real_images = []
@@ -399,7 +402,8 @@ class ComicGeneratorXL:
                     height = height,
                     width = width,
                     generator = generator,
-                    input_id_images = input_id_images
+                    input_id_images = input_id_images,
+                    style_strength_ratio = style_strength_ratio
                 ).images[0]
             )
         return id_images + real_images
