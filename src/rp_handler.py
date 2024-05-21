@@ -79,6 +79,8 @@ def run(job):
         num_inference_steps = validated_input.get("num_inference_steps", 25),
         seed = validated_input.get("seed", 42),
         image_ref = image_ref
+        style_strength_ratio = validated_input.get("style_strength_ratio", 30)  # Use the new parameter
+
     )
 
     # Upload output object
